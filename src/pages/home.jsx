@@ -1,6 +1,7 @@
 import Boton from './componentes/inputHome.jsx'
 function Home (){
     return(
-    <><Boton texto="Comunicaciones generales" /><Boton texto="Retiros" /></>
+    <div><><Boton texto="Comunicaciones generales" /><Boton texto="Retiros" /></>
+    </div>
     )
 }
