@@ -2,7 +2,7 @@ import React from 'react'
 function Boton (props){
     return (
         <div>
-            <button>{PaymentResponse.texto}</button>
+            <button>{props.texto}</button>
         </div>
     )
 }
