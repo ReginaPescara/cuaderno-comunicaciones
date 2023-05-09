@@ -1,4 +1,8 @@
 import React from 'react'
-function Boton (){
-    
+function Boton (props){
+    return (
+        <div>
+            <button>{PaymentResponse.texto}</button>
+        </div>
+    )
 }
