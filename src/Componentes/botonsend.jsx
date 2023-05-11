@@ -1,5 +1,5 @@
 import React from "react"
-export default function botonsend() {
+export default function Botonsend() {
     return (
         <div>
                 <button

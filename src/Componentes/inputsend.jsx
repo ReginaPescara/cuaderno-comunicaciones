@@ -1,7 +1,7 @@
 
 import React from "react";
 
-export default function inputse() {
+export default function Inputsend() {
     return (
        
        
