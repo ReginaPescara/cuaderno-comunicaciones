@@ -8,8 +8,8 @@
     "@testing-library/user-event": "^13.5.0",
 <<<<<<< HEAD
     "googleapis": "^118.0.0",
-=======
-    "android": "^0.0.8",
+
+=======    "android": "^0.0.8",
     "android-versions": "^1.8.1",
     "firebase": "^9.21.0",
 >>>>>>> refs/remotes/origin/develop
