@@ -1,7 +1,7 @@
 
 import React from "react";
 
-export default function Example() {
+export default function inputse() {
     return (
        
        
@@ -16,7 +16,7 @@ export default function Example() {
                 </label>
                 <div className="mt-2">
                   <input
-                    id="email"
+                    value="email"
                     name="email"
                     type="email"
                     autoComplete="email"
@@ -39,7 +39,7 @@ export default function Example() {
                 </div>
                 <div className="mt-2">
                   <input
-                    id="password"
+                    value="password"
                     name="password"
                     type="password"
                     autoComplete="current-password"

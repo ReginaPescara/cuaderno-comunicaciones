@@ -1,5 +1,5 @@
 import React from "react";
-export default function Example() {
+export default function titulosend() {
     return (
 <div className="sm:mx-auto sm:w-full sm:max-w-sm">
 <img

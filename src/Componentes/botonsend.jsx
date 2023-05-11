@@ -1,5 +1,5 @@
 import React from "react"
-export default function Example() {
+export default function botonsend() {
     return (
         <div>
                 <button
