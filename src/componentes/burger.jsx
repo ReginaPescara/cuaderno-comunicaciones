@@ -4,3 +4,4 @@ function Burger (){
         <button></button>
     )
 }
+export default Burger;
