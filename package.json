@@ -9,20 +9,37 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
 <<<<<<< HEAD
+<<<<<<< HEAD
 
+=======
+    "android-versions": "^1.8.1",
+    "autoprefixer": "^10.4.14",
+    "firebase": "^9.21.0",
+    "googleapis": "^118.0.0",
+    "postcss": "^8.4.23",
+    "postcss-cli": "^8.3.1",
+=======
+<<<<<<< HEAD
+>>>>>>> 0df952898a3ced0e5783b147da537d35be559276
     "googleapis": "^118.0.0",
 
   "android": "^0.0.8",
     "android-versions": "^1.8.1",
     "firebase": "^9.21.0",
+<<<<<<< HEAD
 
 =======
     "android-versions": "^1.8.1",
     "fb": "^2.0.0",
 >>>>>>> 2f961c4a7432cc2d80ea557e613b9482ddfc3e38
+=======
+>>>>>>> refs/remotes/origin/develop
+>>>>>>> develop
+>>>>>>> 0df952898a3ced0e5783b147da537d35be559276
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-scripts": "5.0.1",
+    "tailwindcss": "^3.3.2",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
