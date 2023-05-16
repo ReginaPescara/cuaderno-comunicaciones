@@ -1,5 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
+import Avisos from './componentes/Avisos';
 
 function App() {
   return (
@@ -16,8 +17,10 @@ function App() {
           rel="noopener noreferrer"
         >
           Learn React
+          Prueba para cardena
         </a>
       </header>
+      <Avisos></Avisos>
     </div>
   );
 }
