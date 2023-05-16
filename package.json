@@ -8,12 +8,10 @@
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
-<<<<<<< HEAD
+
     "android": "^0.0.8",
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> 3e837641f464271129eda7b8982ea13d28eebd1f
+
+
     "android-versions": "^1.8.1",
     "autoprefixer": "^10.4.14",
     "fb": "^2.0.0",
@@ -21,22 +19,17 @@
     "googleapis": "^118.0.0",
     "postcss": "^8.4.23",
     "postcss-cli": "^8.3.1",
-<<<<<<< HEAD
-=======
-=======
-<<<<<<< HEAD
+
+
     "googleapis": "^118.0.0",
-=======
+
     "android": "^0.0.8",
     "android-versions": "^1.8.1",
     "firebase": "^9.21.0",
->>>>>>> refs/remotes/origin/develop
->>>>>>> develop
-=======
+
     "android-versions": "^1.8.1",
     "fb": "^2.0.0",
->>>>>>> lucas
->>>>>>> 3e837641f464271129eda7b8982ea13d28eebd1f
+
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-scripts": "5.0.1",
