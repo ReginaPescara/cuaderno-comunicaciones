@@ -1,5 +1,5 @@
-import Boton from './componentes/inputHome.jsx'
-import Burger from './componentes/burger.jsx'
+import Boton from '../componentes/inputHome.jsx'
+import Burger from '../componentes/burger.jsx'
 function Home (){
     return(
     <div className='contenedor'><div className='nav'><Burger/></div>
