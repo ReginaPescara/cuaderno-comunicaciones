@@ -1,12 +1,12 @@
 import './App.css';
-import Titulosend from './Componentes/Titulosend';
-import Botonsend from './Componentes/botonsend';
-import Inputsend from './Componentes/inputsend';
+import Tituloavisos from './Componentes/TituloAvisos';
+
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
+        <Tituloavisos/>
       </header>
     </div>
   );
