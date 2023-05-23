@@ -5,6 +5,10 @@ import Inputsend from "../Componentes/inputsend";
 import tailwindConfig from "../../tailwind.config";
 
 
+export default function Signin(){
+
+return(
+
 
 
  
@@ -47,3 +51,6 @@ import tailwindConfig from "../../tailwind.config";
     </p>
   </div>
 </div>
+)
+
+}
