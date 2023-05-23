@@ -1,20 +1,12 @@
-import logo from './logo.svg';
 import './App.css';
-import { PrimerComponente } from './Componentes/PrimerComponente';
-import { SegundoComponente } from './Componentes/SegundoComponente';
+import Titulosend from './Componentes/Titulosend';
+import Botonsend from './Componentes/botonsend';
+import Inputsend from './Componentes/inputsend';
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-
-      <PrimerComponente/>
-
-      <br></br>
-
-      <SegundoComponente/>
-      
       </header>
     </div>
   );
