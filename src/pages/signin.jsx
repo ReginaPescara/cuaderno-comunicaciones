@@ -1,7 +1,7 @@
 import React from "react";
 import Titulosend from "../Componentes/Titulosend";
-import Botonsend from "../Componentes/botonsend";
-import Inputsend from "../Componentes/inputsend";
+import Botonsend from "/Componentes/Botonsend";
+import Inputsend from "../Componentes/Inputsend";
 import tailwindConfig from "../../tailwind.config";
 
 
