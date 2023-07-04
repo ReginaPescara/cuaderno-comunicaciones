@@ -24,11 +24,11 @@ function App() {
     </div>
   )
 }
-import Home from './pages/home.jsx'
+import Home from './pages/home.jsx';
 
 function App() {
   return (
-    <Home/>
+    <Home></Home>
   )
 }
 
