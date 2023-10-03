@@ -6,9 +6,9 @@ import FondoDePantalla from './Componentes/FondoPantalla';
 
 function App(){
   return(
-    <FondoDePantalla>
+    
       <Signin></Signin>
-    </FondoDePantalla>
+   
   )
   }
 export default App;
