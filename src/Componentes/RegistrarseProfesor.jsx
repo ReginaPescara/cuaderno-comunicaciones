@@ -41,6 +41,9 @@ export default function Example() {
       </div>
       <form action="#" method="POST" className="mx-auto mt-16 max-w-xl sm:mt-20">
         <div className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
+
+          {/* Nombre del alumno */}
+          
           <div>
             <label htmlFor="first-name" className="block text-sm font-semibold leading-6 text-gray-900">
               Nombre
@@ -55,6 +58,9 @@ export default function Example() {
               />
             </div>
           </div>
+
+          {/* Apellido del alumno */}
+
           <div>
             <label htmlFor="last-name" className="block text-sm font-semibold leading-6 text-gray-900">
               Apellido
@@ -69,6 +75,9 @@ export default function Example() {
               />
             </div>
           </div>
+
+          {/* Dni del alumno */}
+
           <div>
             <label htmlFor="last-name" className="block text-sm font-semibold leading-6 text-gray-900">
               D.N.I
@@ -83,6 +92,9 @@ export default function Example() {
               />
             </div>
           </div>
+
+          {/* Division del Alumno */}
+
           <div>
             <label htmlFor="last-name" className="block text-sm font-semibold leading-6 text-gray-900">
               Direccion
@@ -97,6 +109,9 @@ export default function Example() {
               />
             </div>
           </div>
+
+          {/* Curso y Division del Alumno */}
+
           <div>
             <select name="curso" id="curso" className="block text-sm font-semibold leading-6 text-gray-900">
               <option value="" className="block text-sm font-semibold leading-6 text-gray-900">Curso</option>
@@ -125,12 +140,17 @@ export default function Example() {
             <div className="mt-2.5">
             </div>
           </div>
+
+
+        {/* Email del Usuario */}
+
           <div className="sm:col-span-2">
             <label htmlFor="email" className="block text-sm font-semibold leading-6 text-gray-900">
               Email
             </label>
             <div className="mt-2.5">
               <input
+                placeholder="Example@gmail.com"
                 type="email"
                 name="email"
                 id="email"
@@ -139,6 +159,9 @@ export default function Example() {
               />
             </div>
           </div>
+
+          {/* Contraseña Del Alumno */}
+
           <div>
             <label htmlFor="last-name" className="block text-sm font-semibold leading-6 text-gray-900">
               Contraseña

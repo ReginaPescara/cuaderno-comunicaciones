@@ -1,10 +1,10 @@
 import React from 'react';
 import './App.css';
-import Registrarse from './Componentes/Registrarse'
+import RegistrarseAlumno from './Componentes/RegistrarseAlumno';
 
 function App(){
   return(
-    <Registrarse></Registrarse>
+    <RegistrarseAlumno></RegistrarseAlumno>
   )
   }
 export default App;
