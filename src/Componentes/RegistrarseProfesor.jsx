@@ -37,12 +37,12 @@ export default function Example() {
         />
       </div>
       <div className="mx-auto max-w-2xl text-center">
-        <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Bienvenido Alumno Registrese!</h2>
+        <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Bienvenido Profesor!</h2>
       </div>
       <form action="#" method="POST" className="mx-auto mt-16 max-w-xl sm:mt-20">
         <div className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
 
-          {/* Nombre del alumno */}
+          {/* Nombre del Profesor */}
           
           <div>
             <label htmlFor="first-name" className="block text-sm font-semibold leading-6 text-gray-900">
@@ -59,7 +59,7 @@ export default function Example() {
             </div>
           </div>
 
-          {/* Apellido del alumno */}
+          {/* Apellido del Profesor */}
 
           <div>
             <label htmlFor="last-name" className="block text-sm font-semibold leading-6 text-gray-900">
@@ -75,72 +75,6 @@ export default function Example() {
               />
             </div>
           </div>
-
-          {/* Dni del alumno */}
-
-          <div>
-            <label htmlFor="last-name" className="block text-sm font-semibold leading-6 text-gray-900">
-              D.N.I
-            </label>
-            <div className="mt-2.5">
-              <input
-                type="text"
-                name="last-name"
-                id="last-name"
-                autoComplete="family-name"
-                className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-              />
-            </div>
-          </div>
-
-          {/* Division del Alumno */}
-
-          <div>
-            <label htmlFor="last-name" className="block text-sm font-semibold leading-6 text-gray-900">
-              Direccion
-            </label>
-            <div className="mt-2.5">
-              <input
-                type="text"
-                name="last-name"
-                id="last-name"
-                autoComplete="family-name"
-                className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-              />
-            </div>
-          </div>
-
-          {/* Curso y Division del Alumno */}
-
-          <div>
-            <select name="curso" id="curso" className="block text-sm font-semibold leading-6 text-gray-900">
-              <option value="" className="block text-sm font-semibold leading-6 text-gray-900">Curso</option>
-              <option value="" className="block text-sm font-semibold leading-6 text-gray-900">Primer Año</option>
-              <option value="" className="block text-sm font-semibold leading-6 text-gray-900">Segundo Año</option>
-              <option value="" className="block text-sm font-semibold leading-6 text-gray-900">Tercer Año</option>
-              <option value="" className="block text-sm font-semibold leading-6 text-gray-900">Cuarto Año</option>
-              <option value="" className="block text-sm font-semibold leading-6 text-gray-900">Quinto Año</option>
-              <option value="" className="block text-sm font-semibold leading-6 text-gray-900">Sexto Año</option>
-            </select>
-            <div className="mt-2.5">
-            </div>
-          </div>
-          <div>
-            <select name="curso" id="curso" className="block text-sm font-semibold leading-6 text-gray-900">
-              <option value="" className="block text-sm font-semibold leading-6 text-gray-900">Division</option>
-              <option value="" className="block text-sm font-semibold leading-6 text-gray-900">1ro 1ra</option>
-              <option value="" className="block text-sm font-semibold leading-6 text-gray-900">1ro 2da</option>
-              <option value="" className="block text-sm font-semibold leading-6 text-gray-900">1ro 3ra</option>
-              <option value="" className="block text-sm font-semibold leading-6 text-gray-900">1ro 4ta</option>
-              <option value="" className="block text-sm font-semibold leading-6 text-gray-900">1ro 5ta</option>
-              <option value="" className="block text-sm font-semibold leading-6 text-gray-900">1ro 6ta</option>
-              <option value="" className="block text-sm font-semibold leading-6 text-gray-900">1ro 7ma</option>
-              <option value="" className="block text-sm font-semibold leading-6 text-gray-900">1ro 8va</option>
-            </select>
-            <div className="mt-2.5">
-            </div>
-          </div>
-
 
         {/* Email del Usuario */}
 
@@ -160,10 +94,55 @@ export default function Example() {
             </div>
           </div>
 
+          {/* Telefono del Profesor */}
+
+          <div>
+            <label htmlFor="number" className="block text-sm font-semibold leading-6 text-gray-900">
+              Telefono
+            </label>
+            <div className="mt-2.5">
+              <input
+                type="number"
+                name="phone-number"
+                id="phone-number"
+                autoComplete="family-name"
+                className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+              />
+            </div>
+          </div>
+
+          <div>
+            <select name="curso" id="curso" className="block text-sm font-semibold leading-6 text-gray-900">
+              <option value="" className="block text-sm font-semibold leading-6 text-gray-900">Curso</option>
+              <option value="" className="block text-sm font-semibold leading-6 text-gray-900">Primer Año</option>
+              <option value="" className="block text-sm font-semibold leading-6 text-gray-900">Segundo Año</option>
+              <option value="" className="block text-sm font-semibold leading-6 text-gray-900">Tercer Año</option>
+              <option value="" className="block text-sm font-semibold leading-6 text-gray-900">Cuarto Año</option>
+              <option value="" className="block text-sm font-semibold leading-6 text-gray-900">Quinto Año</option>
+              <option value="" className="block text-sm font-semibold leading-6 text-gray-900">Sexto Año</option>
+            </select>
+            <div className="mt-2.5">
+            </div>
+          </div>
+          <div>
+            <select name="curso" id="curso" className="block text-sm font-semibold leading-6 text-gray-900">
+              <option value="" className="block text-sm font-semibold leading-6 text-gray-900">Materia</option>
+              <option value="" className="block text-sm font-semibold leading-6 text-gray-900">Ingles</option>
+              <option value="" className="block text-sm font-semibold leading-6 text-gray-900">Fisica</option>
+              <option value="" className="block text-sm font-semibold leading-6 text-gray-900">Quimica</option>
+              <option value="" className="block text-sm font-semibold leading-6 text-gray-900">Dibujo Tecnico</option>
+              <option value="" className="block text-sm font-semibold leading-6 text-gray-900">Matematica</option>
+              <option value="" className="block text-sm font-semibold leading-6 text-gray-900">Lengua y Literatura</option>
+              <option value="" className="block text-sm font-semibold leading-6 text-gray-900">Biologia e Higiene</option>
+            </select>
+            <div className="mt-2.5">
+            </div>
+          </div>
+
           {/* Contraseña Del Alumno */}
 
           <div>
-            <label htmlFor="last-name" className="block text-sm font-semibold leading-6 text-gray-900">
+            <label htmlFor="password" className="block text-sm font-semibold leading-6 text-gray-900">
               Contraseña
             </label>
             <div className="mt-2.5">
@@ -177,7 +156,7 @@ export default function Example() {
             </div>
           </div>
           <div>
-            <label htmlFor="last-name" className="block text-sm font-semibold leading-6 text-gray-900">
+            <label htmlFor="confirm-password" className="block text-sm font-semibold leading-6 text-gray-900">
               Confirmar Contraseña
             </label>
             <div className="mt-2.5">
