@@ -23,18 +23,72 @@ export default function Example() {
         />
       </div>
       <div className="mx-auto max-w-2xl text-center">
-        <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Iniciar sesion</h2>
+        <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Bienvenido Padre/Madre</h2>
       </div>
       <form action="#" method="POST" className="mx-auto mt-16 max-w-xl sm:mt-20">
         <div className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
-         
+
+          {/* Nombre del Profesor */}
           
+          <div>
+            <label htmlFor="first-name" className="block text-sm font-semibold leading-6 text-gray-900">
+              Nombre
+            </label>
+            <div className="mt-2.5">
+              <input
+                type="text"
+                name="first-name"
+                id="first-name"
+                autoComplete="given-name"
+                className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+              />
+            </div>
+          </div>
+
+          {/* Apellido del Profesor */}
+
+          <div>
+            <label htmlFor="last-name" className="block text-sm font-semibold leading-6 text-gray-900">
+              Apellido
+            </label>
+            <div className="mt-2.5">
+              <input
+                type="text"
+                name="last-name"
+                id="last-name"
+                autoComplete="family-name"
+                className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+              />
+            </div>
+          </div>
+
+        
+        {/* Telefono del Profesor */}
+
+                    <div>
+            <label htmlFor="number" className="block text-sm font-semibold leading-6 text-gray-900">
+              Telefono
+            </label>
+            <div className="mt-2.5">
+              <input
+                type="number"
+                name="phone-number"
+                id="phone-number"
+                autoComplete="family-name"
+                className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+              />
+            </div>
+          </div>
+
+        {/* Email del Usuario */}
+
           <div className="sm:col-span-2">
             <label htmlFor="email" className="block text-sm font-semibold leading-6 text-gray-900">
               Email
             </label>
             <div className="mt-2.5">
               <input
+                placeholder="Example@gmail.com"
                 type="email"
                 name="email"
                 id="email"
@@ -43,9 +97,12 @@ export default function Example() {
               />
             </div>
           </div>
+
+
+          {/* Contraseña Del Alumno */}
+
           <div>
-            
-            <label htmlFor="last-name" className="block text-sm font-semibold leading-6 text-gray-900">
+            <label htmlFor="password" className="block text-sm font-semibold leading-6 text-gray-900">
               Contraseña
             </label>
             <div className="mt-2.5">
@@ -58,9 +115,22 @@ export default function Example() {
               />
             </div>
           </div>
-          
+          <div>
+            <label htmlFor="confirm-password" className="block text-sm font-semibold leading-6 text-gray-900">
+              Confirmar Contraseña
+            </label>
+            <div className="mt-2.5">
+              <input
+                type="password"
+                name="confirm"
+                id="confirm"
+                autoComplete="family-name"
+                className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+              />
+            </div>
+          </div>
           <Switch.Group as="div" className="flex gap-x-4 sm:col-span-2">
-            <div className="flex h- items-center">
+            <div className="flex h-6 items-center">
               <Switch
                 checked={agreed}
                 onChange={setAgreed}
@@ -93,25 +163,10 @@ export default function Example() {
             type="submit"
             className="block w-full rounded-md bg-gray-600 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-gray-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900"
           >
-            Iniciar sesion
+            Siguiente
           </button>
         </div>
-        <div className="mt-10">
-          <button 
-            type="submit"
-            className="block w-full rounded-md bg-gray-600 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-gray-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900"
-          
-          >
-            Registrarse 
-          </button>
-        </div>
-                    
       </form>
     </div>
-    
   )
 }
-
-
-
- 
