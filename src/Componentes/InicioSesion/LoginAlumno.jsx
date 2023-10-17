@@ -33,6 +33,10 @@ export default function Example() {
     e.preventDefault()
     auth.LoginWithGoogle()
   }
+  const handleGitHub = (e) =>{
+    e.preventDefault()
+    auth.LoginWithGithub()
+  }
 
   return (
     <div className="isolate bg-white px-6 py-24 sm:py-32 lg:px-8">
@@ -138,6 +142,16 @@ export default function Example() {
             className="block w-full rounded-md bg-gray-600 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-gray-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900"
           >
             Google
+          </button>
+
+          <br />
+
+          <button
+          onClick={(e)=>handleGitHub(e)}
+            type="submit"
+            className="block w-full rounded-md bg-gray-600 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-gray-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900"
+          >
+            Git Hub
           </button>
         </div>
       </form>
