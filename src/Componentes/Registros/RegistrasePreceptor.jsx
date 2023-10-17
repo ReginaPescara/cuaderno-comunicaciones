@@ -108,14 +108,15 @@ export default function Example() {
           </div>
           <div>
             <select name="curso" id="curso" className="block text-sm font-semibold leading-6 text-gray-900">
-              <option value="" className="block text-sm font-semibold leading-6 text-gray-900">Materia</option>
-              <option value="" className="block text-sm font-semibold leading-6 text-gray-900">Ingles</option>
-              <option value="" className="block text-sm font-semibold leading-6 text-gray-900">Fisica</option>
-              <option value="" className="block text-sm font-semibold leading-6 text-gray-900">Quimica</option>
-              <option value="" className="block text-sm font-semibold leading-6 text-gray-900">Dibujo Tecnico</option>
-              <option value="" className="block text-sm font-semibold leading-6 text-gray-900">Matematica</option>
-              <option value="" className="block text-sm font-semibold leading-6 text-gray-900">Lengua y Literatura</option>
-              <option value="" className="block text-sm font-semibold leading-6 text-gray-900">Biologia e Higiene</option>
+              <option value="" className="block text-sm font-semibold leading-6 text-gray-900">Division</option>
+              <option value="" className="block text-sm font-semibold leading-6 text-gray-900">1ro 1ra</option>
+              <option value="" className="block text-sm font-semibold leading-6 text-gray-900">1ro 2da</option>
+              <option value="" className="block text-sm font-semibold leading-6 text-gray-900">1ro 3ra</option>
+              <option value="" className="block text-sm font-semibold leading-6 text-gray-900">1ro 4ta</option>
+              <option value="" className="block text-sm font-semibold leading-6 text-gray-900">1ro 5ta</option>
+              <option value="" className="block text-sm font-semibold leading-6 text-gray-900">1ro 6ta</option>
+              <option value="" className="block text-sm font-semibold leading-6 text-gray-900">1ro 7ma</option>
+              <option value="" className="block text-sm font-semibold leading-6 text-gray-900">1ro 8va</option>
             </select>
             <div className="mt-2.5">
             </div>
