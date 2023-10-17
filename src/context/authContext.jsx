@@ -16,16 +16,16 @@ export const useAuth = () => {
 export function AuthProvider ({children}){
     const register = async (email, password) => {
         const response = await createUserWithEmailAndPassword(auth, email, password)
-        console.log(response);
-    };
+        console.log(response)
+    }
     const login = async (email, password) => {
         const response = await signInWithEmailAndPassword(auth, email, password)
         console.log(response)
-    };
+    }
     const LoginWithGoogle = async () => {
         const responseGoogle = new GoogleAuthProvider()
         return await signInWithPopup(auth, responseGoogle)
-    };
+    }
     const logout = async() => {
         const response = await signOut(auth)
         console.log(response)
@@ -37,6 +37,5 @@ export function AuthProvider ({children}){
         login,
         LoginWithGoogle,
         logout
-    }}>{children}
-    </authContext.Provider>);
+    }}>{children}</authContext.Provider>);
 }

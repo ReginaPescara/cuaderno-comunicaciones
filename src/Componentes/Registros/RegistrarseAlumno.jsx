@@ -14,6 +14,7 @@
 */
 import { useState } from 'react'
 import { Switch } from '@headlessui/react'
+import {useAuth} from "../../context/authContext"
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
@@ -21,7 +22,13 @@ function classNames(...classes) {
 
 export default function Example() {
   const [agreed, setAgreed] = useState(false)
-
+  const auth = useAuth()
+  const [emailRegister, setEmailRegister] = useState("")
+  const [passwordRegister, setPasswordRegister] = useState("")
+  const handleRegister = (e) =>{
+    e.preventDefault()
+    auth.register(emailRegister, passwordRegister)
+  }
   return (
     <div className="isolate bg-white px-6 py-24 sm:py-32 lg:px-8">
       <div
@@ -151,6 +158,7 @@ export default function Example() {
             <div className="mt-2.5">
               <input
                 placeholder='Example@gmail.com'
+                onChange={(e)=> setEmailRegister(e.target.value)}
                 type="email"
                 name="email"
                 id="email"
@@ -168,6 +176,7 @@ export default function Example() {
             </label>
             <div className="mt-2.5">
               <input
+                onChange={(e)=> setPasswordRegister(e.target.value)}
                 type="password"
                 name="password"
                 id="password"
@@ -221,6 +230,7 @@ export default function Example() {
         </div>
         <div className="mt-10">
           <button
+            onClick={(e)=>handleRegister(e)}
             type="submit"
             className="block w-full rounded-md bg-gray-600 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-gray-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900"
           >
