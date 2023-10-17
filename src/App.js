@@ -13,7 +13,7 @@ function App(){
         <LoginAlumno></LoginAlumno>
       </div>
     </AuthProvider>
-
   )  
+  } 
 
-  }  
+export default App;
