@@ -53,13 +53,13 @@ export default function CardsMenu() {
                     className="h-full w-full object-cover object-center"
                   />
                 </div>
-                <h3 className="mt-6 text-sm text-gray-500">
+                <h3 className="mt-6 text-sm text-black-500">
                   <a href={callout.href}>
                     <span className="absolute inset-0" />
                     {callout.name}
                   </a>
                 </h3>
-                <p className="text-base font-semibold text-gray-900">{callout.description}</p>
+                <p className="text-base font-semibold text-Black-900">{callout.description}</p>
               </div>
             ))}
           </div>
