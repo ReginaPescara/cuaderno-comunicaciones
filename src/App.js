@@ -1,18 +1,24 @@
 import React from 'react';
-import './App.css';
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Link
+} from "react-router-dom";
 import { AuthProvider } from './context/authContext';
 import RegistrarseAlumno from './Componentes/Registros/RegistrarseAlumno';
-import RegistrarsePadres from './Componentes/Registros/RegistrarsePadres';
-import RegistrarsePreceptor from './Componentes/Registros/RegistrasePreceptor';
 import LoginAlumno from './Componentes/InicioSesion/LoginAlumno';
 
 function App(){
   return(
-    <AuthProvider>
-      <div className="App">
-        <LoginAlumno></LoginAlumno>
-      </div>
+    <Router>
+      <AuthProvider>
+        <Routes>
+          <Route path="/" element={<RegistrarseAlumno/>}/>
+          <Route path="/LoginAlumno" element={<LoginAlumno/>}/>
+        </Routes>
     </AuthProvider>
+    </Router>
   )
   }
 export default App;
