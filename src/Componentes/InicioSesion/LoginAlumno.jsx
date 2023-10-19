@@ -15,6 +15,7 @@
 import { useState } from 'react'
 import { Switch } from '@headlessui/react'
 import {useAuth} from "../../context/authContext"
+import { Link, useNavigate } from 'react-router-dom';
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
@@ -23,12 +24,20 @@ function classNames(...classes) {
 export default function Example() {
   const [agreed, setAgreed] = useState(false)
   const auth = useAuth();
+  const navigate = useNavigate();
   const {displayName} = auth.user
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-    auth.login(email, password)
+    try {
+      await auth.login(email, password);
+
+      navigate('/LoginAlumno/MenuPrincipal');
+    } catch (error) {
+      let errorMessage = '';
+      errorMessage = 'Error al registrar el usuario. Por favor, intenta nuevamente más tarde.';
+    }
   };
   const handleGoogle = (e) =>{
     e.preventDefault()
@@ -168,6 +177,11 @@ export default function Example() {
           >
             Logout
           </button>
+
+          <br />
+
+          <Link to="/" className="font-semibold text-indigo-600">No tienes Cuenta? Registrate</Link>
+
         </div>
       </form>
     </div>

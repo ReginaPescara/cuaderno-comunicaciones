@@ -15,16 +15,15 @@
 import { useState } from 'react'
 import { Switch } from '@headlessui/react'
 import {useAuth} from "../../context/authContext"
+import { Link } from "react-router-dom";
 
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function Example() {;
-  
+export default function Example() {
   const [agreed, setAgreed] = useState(false)
-
   const auth = useAuth()
   const {displayName} = auth.user
   console.log(displayName)
@@ -33,7 +32,7 @@ export default function Example() {;
   const handleRegister = (e) =>{
     e.preventDefault()
     auth.register(emailRegister, passwordRegister)
-  }
+  };
   return (
     <div className="isolate bg-white px-6 py-24 sm:py-32 lg:px-8">
       <div
@@ -241,8 +240,12 @@ export default function Example() {;
             type="submit"
             className="block w-full rounded-md bg-gray-600 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-gray-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900"
           >
-            Siguiente
+            Registrarme
           </button>
+
+          <br />
+
+          <Link to="/LoginAlumno" className="font-semibold text-indigo-600">Tienes una cuenta? Inicia Sesion</Link>
 
         </div>
       </form>
