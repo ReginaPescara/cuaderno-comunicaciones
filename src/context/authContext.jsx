@@ -1,7 +1,7 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import { auth } from "../firebase";
 import { createContext, useContext } from "react";
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, signOut, GithubAuthProvider} from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, signOut, GithubAuthProvider, onAuthStateChanged} from "firebase/auth";
 
 export const authContext = createContext();
 
@@ -14,6 +14,19 @@ export const useAuth = () => {
 }
 
 export function AuthProvider ({children}){
+    const [user, setUser] = useState("")
+    useEffect(()=>{
+        const suscribed = onAuthStateChanged(auth, (currentUser)=>{
+            if(!currentUser){
+                console.log("No hay usuario logeado")
+                setUser("")
+            } else {
+                setUser(currentUser)
+            }
+        })
+        return () => suscribed()
+    },[])
+    
     const register = async (email, password) => {
         const response = await createUserWithEmailAndPassword(auth, email, password)
         console.log(response)
@@ -41,6 +54,7 @@ export function AuthProvider ({children}){
         login,
         LoginWithGoogle,
         LoginWithGithub,
-        logout
+        logout,
+        user
     }}>{children}</authContext.Provider>);
 }
