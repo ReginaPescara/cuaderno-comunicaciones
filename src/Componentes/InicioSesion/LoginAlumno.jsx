@@ -23,6 +23,7 @@ function classNames(...classes) {
 export default function Example() {
   const [agreed, setAgreed] = useState(false)
   const auth = useAuth();
+  const {displayName} = auth.user
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const handleLogin = (e) => {
@@ -32,10 +33,13 @@ export default function Example() {
   const handleGoogle = (e) =>{
     e.preventDefault()
     auth.LoginWithGoogle()
-  }
+  };
   const handleGitHub = (e) =>{
     e.preventDefault()
     auth.LoginWithGithub()
+  };
+  const handleLogout = () => {
+    auth.logout();
   }
 
   return (
@@ -80,7 +84,7 @@ export default function Example() {
 
           {/* Contraseña Del Alumno */}
 
-          <div>
+          <div className="sm:col-span-2">
             <label htmlFor="last-name" className="block text-sm font-semibold leading-6 text-gray-900">
               Contraseña
             </label>
@@ -125,6 +129,7 @@ export default function Example() {
             </Switch.Label>
           </Switch.Group>
         </div>
+
         <div className="mt-10">
           <button
             onClick={(e)=> handleLogin(e)}
@@ -152,6 +157,16 @@ export default function Example() {
             className="block w-full rounded-md bg-gray-600 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-gray-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900"
           >
             Git Hub
+          </button>
+
+          <br />
+
+          <button
+          onClick={()=>handleLogout()}
+            type="submit"
+            className="block w-full rounded-md bg-gray-600 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-gray-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900"
+          >
+            Logout
           </button>
         </div>
       </form>
