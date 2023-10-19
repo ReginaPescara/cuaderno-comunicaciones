@@ -180,7 +180,7 @@ export default function Example() {
 
           <br />
 
-          <Link to="/" className="font-semibold text-indigo-600">No tienes Cuenta? Registrate</Link>
+          <Link to="/RegistroAlumno" className="font-semibold text-indigo-600">No tienes Cuenta? Registrate</Link>
 
         </div>
       </form>
