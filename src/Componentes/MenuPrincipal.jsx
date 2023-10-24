@@ -77,8 +77,8 @@ const navigation = {
       ],
     },
     {
-      id: 'men',
-      name: 'Men',
+      id: 'intitucion',
+      name: 'Institución',
       featured: [
         {
           name: 'New Arrivals',
