@@ -81,7 +81,7 @@ const navigation = {
       name: 'Institución',
       featured: [
         {
-          name: 'New Arrivals',
+          name: 'Novedades',
           href: '#',
           imageSrc: 'https://tailwindui.com/img/ecommerce-images/product-page-04-detail-product-shot-01.jpg',
           imageAlt: 'Drawstring top with elastic loop closure and textured interior padding.',
