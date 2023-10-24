@@ -26,30 +26,42 @@ export default function Example() {
   const auth = useAuth();
   const navigate = useNavigate();
   const {displayName} = auth.user
+  const [error, setError] = useState(null);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
       await auth.login(email, password);
-
       navigate('/LoginAlumno/MenuPrincipal');
     } catch (error) {
-      let errorMessage = '';
-      errorMessage = 'Error al registrar el usuario. Por favor, intenta nuevamente más tarde.';
+      setError('Inicio de sesion fallido. Contraseña incorrecta o Correo Electronico');
     }
   };
-  const handleGoogle = (e) =>{
+  const handleGoogle = async (e) => {
     e.preventDefault()
-    auth.LoginWithGoogle()
+    try {
+      await auth.LoginWithGoogle()
+      navigate('/LoginAlumno/MenuPrincipal');
+    } catch (error) {
+      setError('Inicio de sesion fallido. Contraseña incorrecta o Correo Electronico');
+    }
   };
-  const handleGitHub = (e) =>{
+  const handleGitHub = async (e) =>{
     e.preventDefault()
-    auth.LoginWithGithub()
+    try {
+      await auth.LoginWithGithub()
+      navigate('/LoginAlumno/MenuPrincipal');
+    } catch (error) {
+      
+    }
   };
   const handleLogout = () => {
     auth.logout();
+    navigate('/RegistroAlumno')
   }
+
 
   return (
     <div className="isolate bg-white px-6 py-24 sm:py-32 lg:px-8">
@@ -184,6 +196,10 @@ export default function Example() {
 
         </div>
       </form>
+
+      <br />
+      <br />
+      {error && <p className='text-center text-xm font-semibold text-red-600'>{error}</p>}
     </div>
   )
 }
