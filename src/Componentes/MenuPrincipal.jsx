@@ -19,6 +19,46 @@ import { Bars3Icon, MagnifyingGlassIcon, ShoppingBagIcon, XMarkIcon } from '@her
 const navigation = {
   categories: [
     {
+      id: 'miperfil',
+      name: 'Mi perfil',
+      featured: [
+        {
+          name: 'Cuaderno de Comunicaciones',
+          href: '#',
+          imageSrc: 'https://img2.docer.com.ar/image/l/e8vv5ec.png',
+          imageAlt: 'Models sitting back to back, wearing Basic Tee in black and bone.',
+        },
+      ],
+      sections: [
+        {
+          id: 'orientacion',
+          name: 'Orientacion',
+          items: [
+            { name: 'Bolsa de trabajo', href: '#' },
+            { name: 'Instructivo lazos', href: '#' },
+            { name: 'Acceso a lazos', href: '#' },
+          ],
+        },
+        {
+          id: 'programasycursos',
+          name: 'Programas y cursos',
+          items: [
+            { name: 'Actividades 2023', href: '#' },
+            { name: 'Programas de libres previas y equivalencias', href: '#' },
+            { name: 'Programas 2020', href: '#' },
+          ],
+        },
+        {
+          id: 'apoyoacademico',
+          name: 'Apoyo Academico',
+          items: [
+            { name: 'Programas Regulares', href: '#' },
+            { name: 'Clases de consulta', href: '#' },
+          ],
+        },
+      ],
+    },
+    {
       id: 'alumnos',
       name: 'Alumnos',
       featured: [
@@ -37,41 +77,29 @@ const navigation = {
       ],
       sections: [
         {
-          id: 'clothing',
-          name: 'Clothing',
+          id: 'orientacion',
+          name: 'Orientacion',
           items: [
-            { name: 'Tops', href: '#' },
-            { name: 'Dresses', href: '#' },
-            { name: 'Pants', href: '#' },
-            { name: 'Denim', href: '#' },
-            { name: 'Sweaters', href: '#' },
-            { name: 'T-Shirts', href: '#' },
-            { name: 'Jackets', href: '#' },
-            { name: 'Activewear', href: '#' },
-            { name: 'Browse All', href: '#' },
+            { name: 'Bolsa de trabajo', href: '#' },
+            { name: 'Instructivo lazos', href: '#' },
+            { name: 'Acceso a lazos', href: '#' },
           ],
         },
         {
-          id: 'accessories',
-          name: 'Accessories',
+          id: 'programasycursos',
+          name: 'Programas y cursos',
           items: [
-            { name: 'Watches', href: '#' },
-            { name: 'Wallets', href: '#' },
-            { name: 'Bags', href: '#' },
-            { name: 'Sunglasses', href: '#' },
-            { name: 'Hats', href: '#' },
-            { name: 'Belts', href: '#' },
+            { name: 'Actividades 2023', href: '#' },
+            { name: 'Programas de libres previas y equivalencias', href: '#' },
+            { name: 'Programas 2020', href: '#' },
           ],
         },
         {
-          id: 'brands',
-          name: 'Brands',
+          id: 'apoyoacademico',
+          name: 'Apoyo Academico',
           items: [
-            { name: 'Full Nelson', href: '#' },
-            { name: 'My Way', href: '#' },
-            { name: 'Re-Arranged', href: '#' },
-            { name: 'Counterfeit', href: '#' },
-            { name: 'Significant Other', href: '#' },
+            { name: 'Programas Regulares', href: '#' },
+            { name: 'Clases de consulta', href: '#' },
           ],
         },
       ],
@@ -96,16 +124,11 @@ const navigation = {
       ],
       sections: [
         {
-          id: 'clothing',
-          name: 'Clothing',
+          id: 'alumnos',
+          name: 'Alumnos',
           items: [
-            { name: 'Tops', href: '#' },
-            { name: 'Pants', href: '#' },
-            { name: 'Sweaters', href: '#' },
-            { name: 'T-Shirts', href: '#' },
-            { name: 'Jackets', href: '#' },
-            { name: 'Activewear', href: '#' },
-            { name: 'Browse All', href: '#' },
+            { name: 'Asesoria', href: '#' },
+            { name: 'Secretaria', href: '#' },
           ],
         },
         {
@@ -134,8 +157,8 @@ const navigation = {
     },
   ],
   pages: [
-    { name: 'Company', href: '#' },
-    { name: 'Stores', href: '#' },
+    { name: 'Biblioteca', href: '#' }, 
+    { name: 'Docentes', href: '#' },
   ],
 }
 
@@ -219,7 +242,7 @@ export default function Example() {
                                 {item.name}
                               </a>
                               <p aria-hidden="true" className="mt-1">
-                                Shop now
+                                Consigalo hoy mismo!
                               </p>
                             </div>
                           ))}
@@ -261,13 +284,8 @@ export default function Example() {
 
                 <div className="space-y-6 border-t border-gray-200 px-4 py-6">
                   <div className="flow-root">
-                    <a href="#" className="-m-2 block p-2 font-medium text-gray-900">
-                      Sign in
-                    </a>
-                  </div>
-                  <div className="flow-root">
-                    <a href="#" className="-m-2 block p-2 font-medium text-gray-900">
-                      Create account
+                    <a href="./Registros/RegistrarseAlumno.jsx" className="-m-2 block p-2 font-medium text-gray-900">
+                      Create una Cuenta
                     </a>
                   </div>
                 </div>
@@ -291,7 +309,7 @@ export default function Example() {
 
       <header className="relative bg-white">
         <p className="flex h-10 items-center justify-center bg-indigo-600 px-4 text-sm font-medium text-white sm:px-6 lg:px-8">
-          Get free delivery on orders over $100
+          Bienvenido Alumno
         </p>
 
         <nav aria-label="Top" className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -310,10 +328,10 @@ export default function Example() {
               {/* Logo */}
               <div className="ml-4 flex lg:ml-0">
                 <a href="#">
-                  <span className="sr-only">Your Company</span>
+                  <span className="sr-only">Epet 20</span>
                   <img
-                    className="h-8 w-auto"
-                    src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
+                    className="h-14 w-auto rounded-full"
+                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTB1_dHMX3qXyYb7Ezs8TQxIEK5FqHT2odQxp7jXrDZzw&s"
                     alt=""
                   />
                 </a>
@@ -370,7 +388,7 @@ export default function Example() {
                                             {item.name}
                                           </a>
                                           <p aria-hidden="true" className="mt-1">
-                                            Shop now
+                                            Consigalo ahora
                                           </p>
                                         </div>
                                       ))}
@@ -421,23 +439,22 @@ export default function Example() {
 
               <div className="ml-auto flex items-center">
                 <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">
-                  <a href="#" className="text-sm font-medium text-gray-700 hover:text-gray-800">
-                    Sign in
+                  <a href='/LoginAlumno' className="text-sm font-medium text-gray-700 hover:text-gray-800">
+                    Inicia Sesion
                   </a>
                   <span className="h-6 w-px bg-gray-200" aria-hidden="true" />
-                  <a href="#" className="text-sm font-medium text-gray-700 hover:text-gray-800">
-                    Create account
+                  <a href="/RegistroAlumno" className="text-sm font-medium text-gray-700 hover:text-gray-800">
+                    Create una cuenta
                   </a>
                 </div>
 
                 <div className="hidden lg:ml-8 lg:flex">
                   <a href="#" className="flex items-center text-gray-700 hover:text-gray-800">
                     <img
-                      src="https://tailwindui.com/img/flags/flag-canada.svg"
+                      src="https://tailwindui.com/img/flags/flag-argentina.svg"
                       alt=""
                       className="block h-auto w-5 flex-shrink-0"
                     />
-                    <span className="ml-3 block text-sm font-medium">CAD</span>
                     <span className="sr-only">, change currency</span>
                   </a>
                 </div>
@@ -447,18 +464,6 @@ export default function Example() {
                   <a href="#" className="p-2 text-gray-400 hover:text-gray-500">
                     <span className="sr-only">Search</span>
                     <MagnifyingGlassIcon className="h-6 w-6" aria-hidden="true" />
-                  </a>
-                </div>
-
-                {/* Cart */}
-                <div className="ml-4 flow-root lg:ml-6">
-                  <a href="#" className="group -m-2 flex items-center p-2">
-                    <ShoppingBagIcon
-                      className="h-6 w-6 flex-shrink-0 text-gray-400 group-hover:text-gray-500"
-                      aria-hidden="true"
-                    />
-                    <span className="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800">0</span>
-                    <span className="sr-only">items in cart, view bag</span>
                   </a>
                 </div>
               </div>
