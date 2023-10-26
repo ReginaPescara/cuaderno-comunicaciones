@@ -25,6 +25,9 @@ function classNames(...classes) {
 
 export default function Example() {
   const [agreed, setAgreed] = useState(false)
+  const [curso, setCurso] = useState('');
+  const [division, setDivision] = useState('');
+  const [fechaNacimiento, setFechaNacimiento] = useState('');
   const auth = useAuth()
   const {displayName} = auth.user
   console.log(displayName)
@@ -32,6 +35,20 @@ export default function Example() {
   const [passwordRegister, setPasswordRegister] = useState("")
   const [nombre, setNombre] = useState("");
   const [apellido, setApellido] = useState("");
+
+  const handleFechaNacimientoChange = (event) => {
+    setFechaNacimiento(event.target.value);
+  };
+
+  const handleCursoChange = (event) => {
+    setCurso(event.target.value);
+    // Restablece la división cuando se cambia el curso para evitar inconsistencias
+    setDivision('');
+  };
+
+  const handleDivisionChange = (event) => {
+    setDivision(event.target.value);
+  };
 
   const handleRegister = (e) =>{
     e.preventDefault()
@@ -121,6 +138,20 @@ export default function Example() {
             </div>
           </div>
 
+          {/* Fecha del alumno*/}
+
+          <div>
+          <label htmlFor="last-name" className="block text-sm font-semibold leading-6 text-gray-900">Fecha de Nacimiento</label>
+          <div className="mt-2.5">
+          <input
+          type="date"
+          value={fechaNacimiento}
+          onChange={handleFechaNacimientoChange}
+          className="block text-sm font-semibold leading-6 text-gray-900"
+          />
+          </div>
+          </div>
+
           {/* Division del Alumno */}
 
           <div>
@@ -141,33 +172,77 @@ export default function Example() {
           {/* Curso y Division del Alumno */}
 
           <div>
-            <select name="curso" id="curso" className="block text-sm font-semibold leading-6 text-gray-900">
-              <option value="" className="block text-sm font-semibold leading-6 text-gray-900">Curso</option>
-              <option value="" className="block text-sm font-semibold leading-6 text-gray-900">Primer Año</option>
-              <option value="" className="block text-sm font-semibold leading-6 text-gray-900">Segundo Año</option>
-              <option value="" className="block text-sm font-semibold leading-6 text-gray-900">Tercer Año</option>
-              <option value="" className="block text-sm font-semibold leading-6 text-gray-900">Cuarto Año</option>
-              <option value="" className="block text-sm font-semibold leading-6 text-gray-900">Quinto Año</option>
-              <option value="" className="block text-sm font-semibold leading-6 text-gray-900">Sexto Año</option>
+            <select value={curso} onChange={handleCursoChange} className="block text-sm font-semibold leading-6 text-gray-900">
+            <option value="" disabled>Curso</option>
+            <option value="1ro">Primer Año</option>
+            <option value="2do">Segundo Año</option>
+            <option value="3ro">Tercer Año</option>
+            <option value="4to">Cuarto Año</option>
+            <option value="5to">Quinto Año</option>
+            <option value="6to">Sexto Año</option>
             </select>
-            <div className="mt-2.5">
-            </div>
           </div>
-          <div>
-            <select name="curso" id="curso" className="block text-sm font-semibold leading-6 text-gray-900">
-              <option value="" className="block text-sm font-semibold leading-6 text-gray-900">Division</option>
-              <option value="" className="block text-sm font-semibold leading-6 text-gray-900">1ro 1ra</option>
-              <option value="" className="block text-sm font-semibold leading-6 text-gray-900">1ro 2da</option>
-              <option value="" className="block text-sm font-semibold leading-6 text-gray-900">1ro 3ra</option>
-              <option value="" className="block text-sm font-semibold leading-6 text-gray-900">1ro 4ta</option>
-              <option value="" className="block text-sm font-semibold leading-6 text-gray-900">1ro 5ta</option>
-              <option value="" className="block text-sm font-semibold leading-6 text-gray-900">1ro 6ta</option>
-              <option value="" className="block text-sm font-semibold leading-6 text-gray-900">1ro 7ma</option>
-              <option value="" className="block text-sm font-semibold leading-6 text-gray-900">1ro 8va</option>
-            </select>
-            <div className="mt-2.5">
-            </div>
-          </div>
+          {curso && (
+        <div className="mt-2.5">
+          <select value={division} onChange={handleDivisionChange} className="block text-sm font-semibold leading-6 text-gray-900">
+            <option value="" disabled>División</option>
+            {curso === '1ro' && (
+              <>
+                <option value="1ro 1ra">1ro 1ra</option>
+                <option value="1ro 2da">1ro 2da</option>
+                <option value="1ro 3ra">1ro 3ra</option>
+                <option value="1ro 4ta">1ro 4ta</option>
+                <option value="1ro 5ta">1ro 5ta</option>
+                <option value="1ro 6ta">1ro 6ta</option>
+                <option value="1ro 7ma">1ro 7ma</option>
+                <option value="1ro 8va">1ro 8va</option>
+              </>
+            )}
+            {curso === '2do' && (
+              <>
+                <option value="2do 1ra">2do 1ra</option>
+                <option value="2do 2da">2do 2da</option>
+                <option value="2do 3ra">2do 3ra</option>
+                <option value="2do 4ta">2do 4ta</option>
+                <option value="2do 5ta">2do 5ta</option>
+                <option value="2do 6ta">2do 6ta</option>
+              </>
+            )}
+            {curso === '3ro' && (
+              <>
+                <option value="3ro 1ra">3ro 1ra</option>
+                <option value="3ro 2da">3ro 2da</option>
+                <option value="3ro 3ra">3ro 3ra</option>
+                <option value="3ro 4ta">3ro 4ta</option>
+              </>
+            )}
+            {curso === '4to' && (
+              <>
+                <option value="4to 1ra">4to 1ra</option>
+                <option value="4to 2da">4to 2da</option>
+                <option value="4to 3ra">4to 3ra</option>
+                <option value="4to 4ta">4to 4ta</option>
+              </>
+            )}
+            {curso === '5to' && (
+              <>
+                <option value="5to 1ra">5to 1ra</option>
+                <option value="5to 2da">5to 2da</option>
+                <option value="5to 3ra">5to 3ra</option>
+                <option value="5to 4ta">5to 4ta</option>
+              </>
+            )}
+            {curso === '6to' && (
+              <>
+                <option value="6to 1ra">6to 1ra</option>
+                <option value="6to 2da">6to 2da</option>
+                <option value="6to 3ra">6to 3ra</option>
+                <option value="6to 4ta">6to 4ta</option>
+              </>
+            )}
+          </select>
+        </div>
+      )}
 
 
         {/* Email del Usuario */}
