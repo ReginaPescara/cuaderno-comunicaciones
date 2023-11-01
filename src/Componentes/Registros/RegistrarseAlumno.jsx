@@ -12,6 +12,8 @@
   }
   ```
 */
+import React from 'react'
+import { InputGroup, Input, InputRightElement } from "@chakra-ui/react";
 import { useState } from 'react'
 import { Switch } from '@headlessui/react'
 import {useAuth} from "../../context/authContext"
@@ -26,9 +28,16 @@ function classNames(...classes) {
 export default function Example() {
   const [agreed, setAgreed] = useState(false)
   const [curso, setCurso] = useState('');
+
   const [division, setDivision] = useState('');
   const [fechaNacimiento, setFechaNacimiento] = useState('');
   const auth = useAuth()
+
+  const [shown, setShown] = React.useState(false);
+  const switchShown = () => setShown(!shown);
+  const [password, setPassword] = React.useState('');
+  const onChange = ({ currentTarget }) => setPassword(currentTarget.value);
+
   const {displayName} = auth.user
   console.log(displayName)
   const [emailRegister, setEmailRegister] = useState("")
@@ -54,12 +63,13 @@ export default function Example() {
     e.preventDefault()
     auth.register(emailRegister, passwordRegister)
   };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    database.ref("usuarios").push({
-      nombre: nombre,
-      apellido: apellido
-    })
+    database.ref("alumnos").push({
+      apellido: apellido,
+      nombre: nombre
+    });
     setNombre("");
     setApellido("");
   };
@@ -194,8 +204,6 @@ export default function Example() {
                 <option value="1ro 4ta">1ro 4ta</option>
                 <option value="1ro 5ta">1ro 5ta</option>
                 <option value="1ro 6ta">1ro 6ta</option>
-                <option value="1ro 7ma">1ro 7ma</option>
-                <option value="1ro 8va">1ro 8va</option>
               </>
             )}
             {curso === '2do' && (
@@ -214,6 +222,8 @@ export default function Example() {
                 <option value="3ro 2da">3ro 2da</option>
                 <option value="3ro 3ra">3ro 3ra</option>
                 <option value="3ro 4ta">3ro 4ta</option>
+                <option value="3ro 5ta">3ro 5ta</option>
+                <option value="3ro 6ta">3ro 6ta</option>
               </>
             )}
             {curso === '4to' && (
@@ -222,6 +232,7 @@ export default function Example() {
                 <option value="4to 2da">4to 2da</option>
                 <option value="4to 3ra">4to 3ra</option>
                 <option value="4to 4ta">4to 4ta</option>
+                <option value="4to 5ta">4to 5ta</option>
               </>
             )}
             {curso === '5to' && (
@@ -271,16 +282,27 @@ export default function Example() {
               Contraseña
             </label>
             <div className="mt-2.5">
+              <InputGroup className="mt-2.5s">
               <input
-                onChange={(e)=> setPasswordRegister(e.target.value)}
-                type="password"
-                name="password"
+                onChange={(e) => {
+                setPasswordRegister(e.target.value);
+                onChange(e);
+                }}
+                type={shown ? 'text' : 'password'}
+                value={password}
                 id="password"
                 autoComplete="family-name"
                 className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
               />
+              <InputRightElement width="3rem" height="2.5rem">
+            <svg onClick={switchShown} class="h-4 w-4 text-gray-500"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round">  <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24" />  <line x1="1" y1="1" x2="23" y2="23" />
+            {shown ? 'Ocultar' : 'Mostrar'}
+            </svg>
+            </InputRightElement>
+            </InputGroup>
             </div>
           </div>
+
           <div>
             <label htmlFor="last-name" className="block text-sm font-semibold leading-6 text-gray-900">
               Confirmar Contraseña
