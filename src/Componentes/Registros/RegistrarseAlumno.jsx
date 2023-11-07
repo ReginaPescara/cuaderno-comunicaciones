@@ -1,25 +1,12 @@
-/*
-  This example requires some changes to your config:
-  
-  ```
-  // tailwind.config.js
-  module.exports = {
-    // ...
-    plugins: [
-      // ...
-      require('@tailwindcss/forms'),
-    ],
-  }
-  ```
-*/
-import React from 'react'
+import React from 'react';
 import { InputGroup, Input, InputRightElement } from "@chakra-ui/react";
-import { useState } from 'react'
-import { Switch } from '@headlessui/react'
-import {useAuth} from "../../context/authContext"
+import { useState } from 'react';
+import { Switch } from '@headlessui/react';
+import {useAuth} from "../../context/authContext";
 import { Link } from "react-router-dom";
-import {database} from '../../firebase'
- 
+
+import { collection, addDoc } from "firebase/firestore";
+import {db} from '../../firebase';
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
@@ -30,20 +17,23 @@ export default function Example() {
   const [curso, setCurso] = useState('');
 
   const [division, setDivision] = useState('');
+
   const [fechaNacimiento, setFechaNacimiento] = useState('');
+
   const auth = useAuth()
 
   const [shown, setShown] = React.useState(false);
   const switchShown = () => setShown(!shown);
+
+  const [nombre, setNombre] = useState('');
+  const [apellido, setApellido] = useState('');
+
   const [password, setPassword] = React.useState('');
   const onChange = ({ currentTarget }) => setPassword(currentTarget.value);
 
-  const {displayName} = auth.user
-  console.log(displayName)
   const [emailRegister, setEmailRegister] = useState("")
   const [passwordRegister, setPasswordRegister] = useState("")
-  const [nombre, setNombre] = useState("");
-  const [apellido, setApellido] = useState("");
+
 
   const handleFechaNacimientoChange = (event) => {
     setFechaNacimiento(event.target.value);
@@ -59,20 +49,42 @@ export default function Example() {
     setDivision(event.target.value);
   };
 
-  const handleRegister = (e) =>{
-    e.preventDefault()
-    auth.register(emailRegister, passwordRegister)
+  const handleNombreChange = (e) => {
+    setNombre(e.target.value);
+  };
+  
+  const handleApellidoChange = (e) => {
+    setApellido(e.target.value);
   };
 
-  const handleSubmit = (e) => {
+  const handleRegister = async (e) => {
     e.preventDefault();
-    database.ref("alumnos").push({
-      apellido: apellido,
-      nombre: nombre
-    });
-    setNombre("");
-    setApellido("");
+  
+    try {
+      // Registra el usuario en el contexto de autenticación (esto parece estar funcionando correctamente en tu código)
+      auth.register(emailRegister, passwordRegister);
+  
+      // Obtiene el ID del usuario actualmente autenticado
+      const userId = auth.currentUser.uid;
+  
+      // Crea un objeto con los datos del alumno
+      const alumnoData = {
+        nombre: nombre,
+        apellido: apellido,
+        // ... otros campos de datos del alumno
+      };
+  
+      // Agrega el documento del alumno a la colección "alumnos"
+      const docRef = await addDoc(collection(db, 'alumnos'), alumnoData);
+  
+      console.log('Alumno registrado con ID: ', docRef.id);
+    } catch (error) {
+      console.error('Error al registrar el alumno: ', error);
+    }
   };
+
+
+
   return (
     <div className="isolate bg-white px-6 py-24 sm:py-32 lg:px-8">
       <div
@@ -90,20 +102,18 @@ export default function Example() {
       <div className="mx-auto max-w-2xl text-center">
         <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Bienvenido Alumno Registrese!</h2>
       </div>
-      <form onSubmit={handleSubmit} action="#" method="POST" className="mx-auto mt-16 max-w-xl sm:mt-20">
+      <form onSubmit={handleRegister} action="#" method="POST" className="mx-auto mt-16 max-w-xl sm:mt-20">
         <div className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
 
           {/* Nombre del alumno */}
-          
-         
-
           <div>
             <label htmlFor="last-name" className="block text-sm font-semibold leading-6 text-gray-900">
               Nombre
             </label>
             <div className="mt-2.5">
               <input
-                onChange={(e) => setNombre(e.target.value)}
+              value={nombre}
+              onChange={handleNombreChange}
                 type="text"
                 name="last-name"
                 id="last-name"
@@ -114,15 +124,15 @@ export default function Example() {
           </div>
 
           {/* Apellido del alumno */}
-
           <div>
             <label htmlFor="last-name" className="block text-sm font-semibold leading-6 text-gray-900">
               Apellido
             </label>
             <div className="mt-2.5">
               <input
-                onChange={(e) => setApellido(e.target.value)}
-                type="text"
+              value={apellido}
+              onChange={handleApellidoChange}
+              type="text"
                 name="last-name"
                 id="last-name"
                 autoComplete="family-name"
@@ -132,7 +142,6 @@ export default function Example() {
           </div>
 
           {/* Dni del alumno */}
-
           <div>
             <label htmlFor="last-name" className="block text-sm font-semibold leading-6 text-gray-900">
               D.N.I
@@ -149,7 +158,6 @@ export default function Example() {
           </div>
 
           {/* Fecha del alumno*/}
-
           <div>
           <label htmlFor="last-name" className="block text-sm font-semibold leading-6 text-gray-900">Fecha de Nacimiento</label>
           <div className="mt-2.5">
@@ -163,7 +171,6 @@ export default function Example() {
           </div>
 
           {/* Division del Alumno */}
-
           <div>
             <label htmlFor="last-name" className="block text-sm font-semibold leading-6 text-gray-900">
               Direccion
@@ -180,7 +187,6 @@ export default function Example() {
           </div>
 
           {/* Curso y Division del Alumno */}
-
           <div>
             <select value={curso} onChange={handleCursoChange} className="block text-sm font-semibold leading-6 text-gray-900">
             <option value="" disabled>Curso</option>
@@ -257,7 +263,6 @@ export default function Example() {
 
 
         {/* Email del Usuario */}
-
           <div className="sm:col-span-2">
             <label htmlFor="email" className="block text-sm font-semibold leading-6 text-gray-900">
               Email
@@ -276,7 +281,6 @@ export default function Example() {
           </div>
 
           {/* Contraseña Del Alumno */}
-
           <div>
             <label htmlFor="last-name" className="block text-sm font-semibold leading-6 text-gray-900">
               Contraseña
@@ -295,7 +299,7 @@ export default function Example() {
                 className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
               />
               <InputRightElement width="3rem" height="2.5rem">
-            <svg onClick={switchShown} class="h-4 w-4 text-gray-500"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round">  <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24" />  <line x1="1" y1="1" x2="23" y2="23" />
+            <svg onClick={switchShown} class="h-6 w-6 text-gray-500"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round">  <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24" />  <line x1="1" y1="1" x2="23" y2="23" />
             {shown ? 'Ocultar' : 'Mostrar'}
             </svg>
             </InputRightElement>
@@ -317,6 +321,7 @@ export default function Example() {
               />
             </div>
           </div>
+          
           <Switch.Group as="div" className="flex gap-x-4 sm:col-span-2">
             <div className="flex h-6 items-center">
               <Switch
@@ -346,20 +351,17 @@ export default function Example() {
             </Switch.Label>
           </Switch.Group>
         </div>
+
         <div className="mt-10">
           <button
-
             onClick={(e)=>handleRegister(e)}
             type="submit"
             className="block w-full rounded-md bg-gray-600 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-gray-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900"
           >
             Registrarme
           </button>
-
           <br />
-
           <Link to="/LoginAlumno" className="font-semibold text-indigo-600">Tienes una cuenta? Inicia Sesion</Link>
-
         </div>
       </form>
     </div>
