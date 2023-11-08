@@ -20,6 +20,7 @@ function App(){
           <Route path="/RegistroAlumno" element={<RegistrarseAlumno/>}/>
           <Route path="/LoginAlumno" element={<LoginAlumno/>}/>
           <Route path="/LoginAlumno/MenuPrincipal" element={<MenuPrincipal/>}/>
+          <Route path="/MenuPrincipal" element={<MenuPrincipal/>}/>
         </Routes>
     </AuthProvider>
     </Router>

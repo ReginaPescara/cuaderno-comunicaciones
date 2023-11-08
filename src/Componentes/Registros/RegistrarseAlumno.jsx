@@ -4,8 +4,11 @@ import { useState } from 'react';
 import { Switch } from '@headlessui/react';
 import {useAuth} from "../../context/authContext";
 import { Link } from "react-router-dom";
+import { onAuthStateChanged } from 'firebase/auth';
+import { useNavigate } from 'react-router-dom';
 
-import { collection, addDoc } from "firebase/firestore";
+
+import { collection, addDoc, orderBy, getDocs, query} from "firebase/firestore";
 import {db} from '../../firebase';
 
 function classNames(...classes) {
@@ -19,6 +22,10 @@ export default function Example() {
   const [division, setDivision] = useState('');
 
   const [fechaNacimiento, setFechaNacimiento] = useState('');
+
+  const [dni, setDni] = useState('');
+
+  const [direccion, setDireccion] = useState('');
 
   const auth = useAuth()
 
@@ -49,6 +56,14 @@ export default function Example() {
     setDivision(event.target.value);
   };
 
+  const handleDireccionChange = (event) => {
+    setDireccion(event.target.value);
+  }
+
+  const handleDniChange = (event) => {
+    setDni(event.target.value);
+  }
+
   const handleNombreChange = (e) => {
     setNombre(e.target.value);
   };
@@ -57,31 +72,85 @@ export default function Example() {
     setApellido(e.target.value);
   };
 
-  const handleRegister = async (e) => {
+  const navigate = useNavigate();
+
+
+
+  const checkUserAuth = async () => {
+    return new Promise((resolve, reject) => {
+      const unsubscribe = onAuthStateChanged(auth, (user) => {
+        if (user) {
+          // El usuario está autenticado, resuelve la promesa
+          resolve(user);
+        } else {
+          // El usuario no está autenticado, rechaza la promesa
+          reject('Usuario no autenticado.');
+        }
+        // No olvides desuscribirte para evitar fugas de memoria
+        unsubscribe();
+      });
+    });
+  };
+
+  const onClickRegisterButton = async () => {
+    try {
+      const user = await checkUserAuth();
+      if (user) {
+        await handleRegister(user); // Pasa el evento como argumento a handleRegister
+        // Puedes realizar otras acciones después del registro si es necesario
+        // navigate('/MenuPrincipal'); // Redirige al usuario a otra página si es necesario
+      } else {
+        console.error('Usuario no autenticado.');
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const handleRegister = async (e, user) => {
     e.preventDefault();
-  
+    console.log(nombre);
+    console.log(apellido);
+    const alumnoData = {
+      nombre: nombre,
+      apellido: apellido,
+      fecha: fechaNacimiento,
+      dni: dni,
+      direccion: direccion,
+      Curso: division, 
+      // ... otros campos de datos del alumno
+    };
     try {
       // Registra el usuario en el contexto de autenticación (esto parece estar funcionando correctamente en tu código)
-      auth.register(emailRegister, passwordRegister);
+      
   
       // Obtiene el ID del usuario actualmente autenticado
-      const userId = auth.currentUser.uid;
+      //Auto incrementable
+  
   
       // Crea un objeto con los datos del alumno
-      const alumnoData = {
-        nombre: nombre,
-        apellido: apellido,
-        // ... otros campos de datos del alumno
-      };
+
   
       // Agrega el documento del alumno a la colección "alumnos"
       const docRef = await addDoc(collection(db, 'alumnos'), alumnoData);
   
+      console.log(docRef);
       console.log('Alumno registrado con ID: ', docRef.id);
+      auth.register(emailRegister, passwordRegister);
+      const querySnapshot = await getDocs(
+        query(collection(db, 'alumnos'), orderBy('nombre'))
+      );
+
+      querySnapshot.forEach((doc) => {
+        // Accede a los datos de cada documento ordenado por el campo "nombre"
+        console.log(doc.id, " => ", doc.data());
+      });
+      navigate('/MenuPrincipal');
     } catch (error) {
       console.error('Error al registrar el alumno: ', error);
     }
   };
+
 
 
 
@@ -115,8 +184,8 @@ export default function Example() {
               value={nombre}
               onChange={handleNombreChange}
                 type="text"
-                name="last-name"
-                id="last-name"
+                name="nombre"
+                id="nombre"
                 autoComplete="family-name"
                 className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
               />
@@ -133,8 +202,8 @@ export default function Example() {
               value={apellido}
               onChange={handleApellidoChange}
               type="text"
-                name="last-name"
-                id="last-name"
+                name="apellido"
+                id="apellido"
                 autoComplete="family-name"
                 className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
               />
@@ -148,9 +217,11 @@ export default function Example() {
             </label>
             <div className="mt-2.5">
               <input
+                value={dni}
+                onChange={handleDniChange}
                 type="text"
-                name="last-name"
-                id="last-name"
+                name="dni"
+                id="dni"
                 autoComplete="family-name"
                 className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
               />
@@ -177,9 +248,11 @@ export default function Example() {
             </label>
             <div className="mt-2.5">
               <input
+                value={direccion}
+                onChange={handleDireccionChange}
                 type="text"
-                name="last-name"
-                id="last-name"
+                name="direccion"
+                id="direccion"
                 autoComplete="family-name"
                 className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
               />
@@ -354,7 +427,11 @@ export default function Example() {
 
         <div className="mt-10">
           <button
-            onClick={(e)=>handleRegister(e)}
+            onChange={(e) => {
+              e.preventDefault();
+              handleRegister(e);
+              onClickRegisterButton();
+            }}
             type="submit"
             className="block w-full rounded-md bg-gray-600 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-gray-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900"
           >
