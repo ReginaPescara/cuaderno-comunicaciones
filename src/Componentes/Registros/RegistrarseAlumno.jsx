@@ -7,6 +7,9 @@ import { Link } from "react-router-dom";
 import { onAuthStateChanged } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 
+import Swal from 'sweetalert2';
+import 'sweetalert2/dist/sweetalert2.min.css';
+
 
 import { collection, addDoc, orderBy, getDocs, query} from "firebase/firestore";
 import {db} from '../../firebase';
@@ -18,6 +21,9 @@ function classNames(...classes) {
 export default function Example() {
   const [agreed, setAgreed] = useState(false)
   const [curso, setCurso] = useState('');
+
+  const [registroExitoso, setRegistroExitoso] = useState(false);
+
 
   const [division, setDivision] = useState('');
 
@@ -92,22 +98,8 @@ export default function Example() {
     });
   };
 
-  const onClickRegisterButton = async () => {
-    try {
-      const user = await checkUserAuth();
-      if (user) {
-        await handleRegister(user); // Pasa el evento como argumento a handleRegister
-        // Puedes realizar otras acciones después del registro si es necesario
-        // navigate('/MenuPrincipal'); // Redirige al usuario a otra página si es necesario
-      } else {
-        console.error('Usuario no autenticado.');
-      }
-    } catch (error) {
-      console.error(error);
-    }
-  };
 
-  const handleRegister = async (e, user) => {
+  const handleRegister = async (e, onClose, user) => {
     e.preventDefault();
     console.log(nombre);
     console.log(apellido);
@@ -118,19 +110,8 @@ export default function Example() {
       dni: dni,
       direccion: direccion,
       Curso: division, 
-      // ... otros campos de datos del alumno
     };
     try {
-      // Registra el usuario en el contexto de autenticación (esto parece estar funcionando correctamente en tu código)
-      
-  
-      // Obtiene el ID del usuario actualmente autenticado
-      //Auto incrementable
-  
-  
-      // Crea un objeto con los datos del alumno
-
-  
       // Agrega el documento del alumno a la colección "alumnos"
       const docRef = await addDoc(collection(db, 'alumnos'), alumnoData);
   
@@ -145,7 +126,20 @@ export default function Example() {
         // Accede a los datos de cada documento ordenado por el campo "nombre"
         console.log(doc.id, " => ", doc.data());
       });
-      navigate('/MenuPrincipal');
+
+      setRegistroExitoso(true);
+
+      Swal.fire({
+        icon: 'success',
+        title: '¡Registro exitoso!',
+        text: 'Bienvenido a nuestra aplicación.',
+        timer: 3000,
+        showConfirmButton: false,
+        willClose: () => {
+          navigate('/MenuPrincipal');
+        }
+      });
+
     } catch (error) {
       console.error('Error al registrar el alumno: ', error);
     }
@@ -181,6 +175,7 @@ export default function Example() {
             </label>
             <div className="mt-2.5">
               <input
+              required
               value={nombre}
               onChange={handleNombreChange}
                 type="text"
@@ -199,6 +194,7 @@ export default function Example() {
             </label>
             <div className="mt-2.5">
               <input
+              required
               value={apellido}
               onChange={handleApellidoChange}
               type="text"
@@ -217,6 +213,7 @@ export default function Example() {
             </label>
             <div className="mt-2.5">
               <input
+              required
                 value={dni}
                 onChange={handleDniChange}
                 type="text"
@@ -248,6 +245,7 @@ export default function Example() {
             </label>
             <div className="mt-2.5">
               <input
+              required
                 value={direccion}
                 onChange={handleDireccionChange}
                 type="text"
@@ -261,7 +259,7 @@ export default function Example() {
 
           {/* Curso y Division del Alumno */}
           <div>
-            <select value={curso} onChange={handleCursoChange} className="block text-sm font-semibold leading-6 text-gray-900">
+            <select required value={curso} onChange={handleCursoChange} className="block text-sm font-semibold leading-6 text-gray-900">
             <option value="" disabled>Curso</option>
             <option value="1ro">Primer Año</option>
             <option value="2do">Segundo Año</option>
@@ -273,7 +271,7 @@ export default function Example() {
           </div>
           {curso && (
         <div className="mt-2.5">
-          <select value={division} onChange={handleDivisionChange} className="block text-sm font-semibold leading-6 text-gray-900">
+          <select required value={division} onChange={handleDivisionChange} className="block text-sm font-semibold leading-6 text-gray-900">
             <option value="" disabled>División</option>
             {curso === '1ro' && (
               <>
@@ -342,6 +340,7 @@ export default function Example() {
             </label>
             <div className="mt-2.5">
               <input
+              required
                 placeholder='Example@gmail.com'
                 onChange={(e)=> setEmailRegister(e.target.value)}
                 type="email"
@@ -361,6 +360,7 @@ export default function Example() {
             <div className="mt-2.5">
               <InputGroup className="mt-2.5s">
               <input
+                required
                 onChange={(e) => {
                 setPasswordRegister(e.target.value);
                 onChange(e);
@@ -430,7 +430,6 @@ export default function Example() {
             onChange={(e) => {
               e.preventDefault();
               handleRegister(e);
-              onClickRegisterButton();
             }}
             type="submit"
             className="block w-full rounded-md bg-gray-600 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-gray-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900"
@@ -440,6 +439,8 @@ export default function Example() {
           <br />
           <Link to="/LoginAlumno" className="font-semibold text-indigo-600">Tienes una cuenta? Inicia Sesion</Link>
         </div>
+
+
       </form>
     </div>
   )
