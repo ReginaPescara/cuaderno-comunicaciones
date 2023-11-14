@@ -3,13 +3,13 @@ import {
   BrowserRouter as Router,
   Routes,
   Route,
-  Link
 } from "react-router-dom";
 import { AuthProvider } from './context/authContext';
 import RegistrarseAlumno from './Componentes/Registros/RegistrarseAlumno';
 import LoginAlumno from './Componentes/InicioSesion/LoginAlumno';
 import MenuPrincipal from './Componentes/MenuPrincipal';
 import CardsMenu from './Componentes/home/CardsMenu';
+import InfoUsuario from './Componentes/ContenidoMenuPrincipal/InfoUsuario'
 
 function App(){
   return(
@@ -21,6 +21,7 @@ function App(){
           <Route path="/LoginAlumno" element={<LoginAlumno/>}/>
           <Route path="/LoginAlumno/MenuPrincipal" element={<MenuPrincipal/>}/>
           <Route path="/MenuPrincipal" element={<MenuPrincipal/>}/>
+          <Route path="/InfoUsuario" element={<InfoUsuario/>}/>
         </Routes>
     </AuthProvider>
     </Router>

@@ -99,8 +99,9 @@ export default function Example() {
   };
 
 
-  const handleRegister = async (e, onClose, user) => {
+  const handleRegister = async (e, onClose, fullName, user) => {
     e.preventDefault();
+
     console.log(nombre);
     console.log(apellido);
     const alumnoData = {
@@ -113,6 +114,7 @@ export default function Example() {
     };
     try {
       // Agrega el documento del alumno a la colección "alumnos"
+
       const docRef = await addDoc(collection(db, 'alumnos'), alumnoData);
   
       console.log(docRef);

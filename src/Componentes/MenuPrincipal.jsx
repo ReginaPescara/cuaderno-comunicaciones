@@ -12,9 +12,11 @@
   }
   ```
 */
+
 import { Fragment, useState } from 'react'
 import { Dialog, Popover, Tab, Transition } from '@headlessui/react'
 import { Bars3Icon, MagnifyingGlassIcon, ShoppingBagIcon, XMarkIcon } from '@heroicons/react/24/outline'
+
 
 const navigation = {
   categories: [
@@ -439,12 +441,8 @@ export default function Example() {
 
               <div className="ml-auto flex items-center">
                 <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">
-                  <a href='/LoginAlumno' className="text-sm font-medium text-gray-700 hover:text-gray-800">
-                    Inicia Sesion
-                  </a>
-                  <span className="h-6 w-px bg-gray-200" aria-hidden="true" />
-                  <a href="/RegistroAlumno" className="text-sm font-medium text-gray-700 hover:text-gray-800">
-                    Create una cuenta
+                  <a href='/InfoUsuario' className="text-sm font-medium text-gray-700 hover:text-gray-800">
+                    Informacion de Usuario
                   </a>
                 </div>
 
